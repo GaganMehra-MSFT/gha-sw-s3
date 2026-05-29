@@ -22,3 +22,4 @@ jobs:
          aws s3 sync ./ s3://gagan-gha-static-website/ \
          --exclude "*" \
          --include "index.html"
+         --include "style.css"
