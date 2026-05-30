@@ -1,14 +1,17 @@
 name: Outputs Demo
 on: push
 jobs:
-  job1:
+  build:
+    outputs:
+      version: ${{ steps.1-1-0.outputs.version }}
     runs-on: ubuntu-latest
     steps:
-      - name: step-1
-        id: id-1-1-0
+      - name: step-1-build
+        id: 1-1-0
         run: echo "version=1.0.0" >> $GITHUB_OUTPUT
-      - name: step-2
-        run: echo "This version is ${{  steps.id-1-1-0.outputs.version}}"
-      - name: step-3
-        run: echo "The id for step 1 is ${{github.action_ref}}"
-        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: step-2-DeployTheApp
+        run: echo "We are deployin the app with version ${{ needs.build.outputs.version }}"
