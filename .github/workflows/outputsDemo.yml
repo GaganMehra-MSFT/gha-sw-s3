@@ -3,11 +3,11 @@ on: push
 jobs:
   build:
     outputs:
-      version: ${{ steps.1-1-0.outputs.version }}
+      version: ${{ steps.id-1-1-0.outputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: step-1-build
-        id: 1-1-0
+        id: id-1-1-0
         run: echo "version=1.0.0" >> $GITHUB_OUTPUT
   deploy:
     needs: build
